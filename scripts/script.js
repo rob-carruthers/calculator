@@ -46,7 +46,7 @@ document.querySelector("#buttonClear").addEventListener(
 // Function for updating calculatorDisplayValue and the display itself
 function sendNumeralToDisplay(n) {
     let newValue = 0;
-    
+
     // If a decimal number, handle this gracefully
     if (calculatorDisplayDecimals > 0) {
         // First update the value so that typing more numbers adds decimals on the end
@@ -106,7 +106,7 @@ document.querySelector("#buttonEquals").addEventListener(
         if (!(currentOperator === "")) {
             const result = operate(currentOperator, firstOperand, calculatorDisplayValue);
             calculatorDisplayValue = result;
-            calculatorDisplay.textContent = Math.round(result * Math.pow(10, precision)) / Math.pow(10, precision).toExponential();
+            calculatorDisplay.textContent = Math.round(result * Math.pow(10, precision)) / Math.pow(10, precision);
         }
     }
 )
