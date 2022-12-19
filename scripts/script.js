@@ -35,12 +35,22 @@ function operate(operator, a, b) {
     }
 }
 
-
-
 // Initial setup
-const calculatorDisplay = document.querySelector(".calculatorDisplay")
 let calculatorDisplayValue = 0;
-calculatorDisplay.textContent = calculatorDisplayValue;
+const calculatorDisplay = document.querySelector(".calculatorDisplay")
+
+function reset() {
+    calculatorDisplayValue = 0;
+    calculatorDisplay.textContent = calculatorDisplayValue;
+}
+
+reset()
+
+// Set up clear button to reset when clicked
+document.querySelector("#buttonClear").addEventListener(
+    'click',
+    () => reset()
+);
 
 // Function for updating calculatorDisplayValue and the display itself
 function sendNumeralToDisplay(n) {
@@ -57,3 +67,5 @@ for (let i = 0; i < 10; i++) {
         )
     });
 }
+
+
