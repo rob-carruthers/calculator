@@ -1,0 +1,47 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+.calculatorBox {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.calculatorDisplay {
+    border: 1px solid blue;
+    width: 300px;
+    text-align: right;
+    font-family: monospace;
+    font-size: 30px;
+}
+
+.buttonsContainer {
+    display: flex;
+    border: 1px solid red;
+    justify-content: center;
+    flex: 1;
+}
+
+.numericalButtonsContainer {
+    display: flex;
+    flex-direction: column;}
+
+.operatorButtonsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+}
+.numericalButtonsRow  {
+    display: flex;
+    justify-content: stretch;
+}
+
+button {
+    width: 100%;
+    padding: 20px;
+    font-size: 26px;
+}
