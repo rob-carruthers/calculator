@@ -37,10 +37,14 @@ function operate(operator, a, b) {
 
 // Initial setup
 let calculatorDisplayValue = 0;
+let firstOperand = 0;
+let currentOperator = "";
 const calculatorDisplay = document.querySelector(".calculatorDisplay")
 
 function reset() {
     calculatorDisplayValue = 0;
+    firstOperand = 0;
+    currentOperator = "";
     calculatorDisplay.textContent = calculatorDisplayValue;
 }
 
@@ -68,4 +72,20 @@ for (let i = 0; i < 10; i++) {
     });
 }
 
+for (const operator of ["Add", "Subtract", "Multiply", "Divide"] ) {
+    document.querySelector("#button" + operator).addEventListener(
+        'click', (e) => {
+            firstOperand = calculatorDisplayValue;
+            calculatorDisplayValue = 0;
+            currentOperator = e.target.textContent;
+        }
+    );
+};
 
+document.querySelector("#buttonEquals").addEventListener(
+    'click', () => {
+        const result = operate(currentOperator, firstOperand, calculatorDisplayValue);
+        calculatorDisplayValue = result;
+        calculatorDisplay.textContent = calculatorDisplayValue;
+    }
+)
