@@ -23,6 +23,7 @@ function operate(operator, a, b) {
 let calculatorDisplayValue = 0;
 let firstOperand = 0;
 let currentOperator = "";
+const precision = 14;
 const calculatorDisplay = document.querySelector(".calculatorDisplay")
 
 function reset() {
@@ -71,7 +72,7 @@ for (const operator of ["Add", "Subtract", "Multiply", "Divide"] ) {
             else {
                 const result = operate(currentOperator, firstOperand, calculatorDisplayValue);
                 firstOperand = result;
-                calculatorDisplay.textContent = result;
+                calculatorDisplay.textContent = Math.round(result * Math.pow(10, precision)) / Math.pow(10, precision);
                 // reset the display value for when a new number is typed.
                 calculatorDisplayValue = 0;
             }
@@ -84,8 +85,11 @@ for (const operator of ["Add", "Subtract", "Multiply", "Divide"] ) {
 
 document.querySelector("#buttonEquals").addEventListener(
     'click', () => {
-        const result = operate(currentOperator, firstOperand, calculatorDisplayValue);
-        calculatorDisplayValue = result;
-        calculatorDisplay.textContent = calculatorDisplayValue;
+        if (!(currentOperator === "")) {
+            const result = operate(currentOperator, firstOperand, calculatorDisplayValue);
+            calculatorDisplayValue = result;
+            calculatorDisplay.textContent = Math.round(result * Math.pow(10, precision)) / Math.pow(10, precision).toExponential();
+        }
     }
 )
+

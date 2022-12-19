@@ -13,7 +13,7 @@ body {
 
 .calculatorDisplay {
     border: 1px solid blue;
-    width: 300px;
+    width: 400px;
     text-align: right;
     font-family: monospace;
     font-size: 30px;
@@ -22,7 +22,8 @@ body {
 .buttonsContainer {
     display: flex;
     border: 1px solid red;
-    justify-content: center;
+    justify-content: space-between;
+    gap: 20px;
     flex: 1;
 }
 
