@@ -78,25 +78,27 @@ for (const operator of ["Add", "Subtract", "Multiply", "Divide"] ) {
     document.querySelector("#button" + operator).addEventListener(
         'click', (e) => {
             // Check if this is the first operation or one of a chain
-            if (currentOperator === "" ) {
-                firstOperand = calculatorDisplayValue;
-                calculatorDisplayDecimals = 0;
-                calculatorDisplayValue = 0;
+            if (!(currentOperator === e.target.textContent)) {
+                if (currentOperator === "" ) {
+                    firstOperand = calculatorDisplayValue;
+                    calculatorDisplayDecimals = 0;
+                    calculatorDisplayValue = 0;
+                }
+                // If part of a chain, calculate the first result and then
+                // make this the result the first operand of the next
+                // operation.
+                else {
+                    const result = operate(currentOperator, firstOperand, calculatorDisplayValue);
+                    firstOperand = result;
+                    calculatorDisplay.textContent = Math.round(result * Math.pow(10, precision)) / Math.pow(10, precision);
+                    // reset the display value for when a new number is typed.
+                    calculatorDisplayDecimals = 0;
+                    calculatorDisplayValue = 0;
+                }
+                // Set the current operator from the content of
+                // the button which has been clicked
+                currentOperator = e.target.textContent;
             }
-            // If part of a chain, calculate the first result and then
-            // make this the result the first operand of the next
-            // operation.
-            else {
-                const result = operate(currentOperator, firstOperand, calculatorDisplayValue);
-                firstOperand = result;
-                calculatorDisplay.textContent = Math.round(result * Math.pow(10, precision)) / Math.pow(10, precision);
-                // reset the display value for when a new number is typed.
-                calculatorDisplayDecimals = 0;
-                calculatorDisplayValue = 0;
-            }
-            // Set the current operator from the content of
-            // the button which has been clicked
-            currentOperator = e.target.textContent;
         }
     );
 };
@@ -107,6 +109,7 @@ document.querySelector("#buttonEquals").addEventListener(
             const result = operate(currentOperator, firstOperand, calculatorDisplayValue);
             calculatorDisplayValue = result;
             calculatorDisplay.textContent = Math.round(result * Math.pow(10, precision)) / Math.pow(10, precision);
+            currentOperator = "";
         }
     }
 )
