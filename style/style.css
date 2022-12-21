@@ -36,6 +36,13 @@ body {
     flex-direction: column;
     justify-content: stretch;
 }
+
+.functionButtonsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+}
+
 .numericalButtonsRow  {
     display: flex;
     justify-content: stretch;
@@ -49,4 +56,14 @@ button {
 
 #buttonClear {
     background-color: lightpink;
+}
+
+#buttonBackspace {
+    height: 25%;
+    font-size: 16px;
+}
+
+#buttonEquals {
+    height: 75%;
+    background-color: lightblue;
 }

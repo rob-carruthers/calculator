@@ -23,6 +23,7 @@ function operate(operator, a, b) {
 let calculatorDisplayValue = 0;
 let firstOperand = 0;
 let currentOperator = "";
+let backspaceEnabled = false;
 const precision = 14;
 let calculatorDisplayDecimals = 0;
 const calculatorDisplay = document.querySelector(".calculatorDisplay")
@@ -60,6 +61,7 @@ function sendNumeralToDisplay(n) {
         // If no decimals, add a digit on the end as normal.
         newValue = (calculatorDisplayValue * 10) + n;
     }
+    backspaceEnabled = true;
     calculatorDisplayValue = newValue;
     calculatorDisplay.textContent = calculatorDisplayValue;
 }
@@ -77,6 +79,7 @@ for (let i = 0; i < 10; i++) {
 for (const operator of ["Add", "Subtract", "Multiply", "Divide"] ) {
     document.querySelector("#button" + operator).addEventListener(
         'click', (e) => {
+            backspaceEnabled = false;
             // Check if this is the first operation or one of a chain
             if (!(currentOperator === e.target.textContent)) {
                 if (currentOperator === "" ) {
@@ -110,6 +113,7 @@ document.querySelector("#buttonEquals").addEventListener(
             calculatorDisplayValue = result;
             calculatorDisplay.textContent = Math.round(result * Math.pow(10, precision)) / Math.pow(10, precision);
             currentOperator = "";
+            backspaceEnabled = false;
         }
     }
 )
@@ -119,6 +123,19 @@ document.querySelector("#buttonDecimal").addEventListener(
         // If no decimal places at this point, add one
         if (calculatorDisplayDecimals < 1) {
             calculatorDisplayDecimals = 1;
+        }
+    }
+);
+
+document.querySelector("#buttonBackspace").addEventListener(
+    'click', () => {
+        // Remove last digit of display through string manipulation
+        // (A little dirty)
+        if (!(calculatorDisplay === 0) && backspaceEnabled) {
+            let numString = calculatorDisplayValue.toString();
+            numString = numString.slice(0, -1);
+            calculatorDisplayValue = Number(numString);
+            calculatorDisplay.textContent = calculatorDisplayValue;
         }
     }
 );
