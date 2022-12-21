@@ -123,6 +123,7 @@ document.querySelector("#buttonDecimal").addEventListener(
         // If no decimal places at this point, add one
         if (calculatorDisplayDecimals < 1) {
             calculatorDisplayDecimals = 1;
+            calculatorDisplay.textContent += "."
         }
     }
 );
@@ -132,10 +133,18 @@ document.querySelector("#buttonBackspace").addEventListener(
         // Remove last digit of display through string manipulation
         // (A little dirty)
         if (!(calculatorDisplay === 0) && backspaceEnabled) {
-            let numString = calculatorDisplayValue.toString();
-            numString = numString.slice(0, -1);
+            let numString = calculatorDisplay.textContent;
+            // Handle a trailing decimal point if entered
+            if (!(numString.slice(-1) == ".")) {
+                numString = numString.slice(0, -1);
+            };
+
+            if (calculatorDisplayDecimals > 0) {
+                calculatorDisplayDecimals -= 1;
+            };
+
             calculatorDisplayValue = Number(numString);
-            calculatorDisplay.textContent = calculatorDisplayValue;
+            calculatorDisplay.textContent = numString;
         }
     }
 );
