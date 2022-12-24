@@ -52,10 +52,20 @@ button {
     width: 100%;
     padding: 20px;
     font-size: 26px;
+    border: 1px solid black;
+    flex-basis: 0;
+    flex-grow: 1;
+    transition-duration: 0.1s;
 }
 
 #buttonClear {
     background-color: lightpink;
+    font-size: 22px;
+}
+
+#buttonClear:hover {
+    background-color: rgb(195, 141, 150);
+    font-size: 22px;
 }
 
 #buttonBackspace {
@@ -66,4 +76,13 @@ button {
 #buttonEquals {
     height: 75%;
     background-color: lightblue;
+}
+
+#buttonEquals:hover {
+    height: 75%;
+    background-color: rgb(143, 180, 192);
+}
+
+button:hover {
+    background-color: lightgray;
 }
