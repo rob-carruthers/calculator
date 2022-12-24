@@ -1,7 +1,8 @@
 body {
     font-family: sans-serif;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     background-color: #5d0d73;
 }
 
@@ -101,4 +102,9 @@ button {
 
 button:hover {
     background-color: lightgray;
+}
+
+#copyrightNotice {
+    color: rgb(235, 235, 235);
+    margin-top: 20px;
 }
