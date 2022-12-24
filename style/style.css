@@ -2,26 +2,30 @@ body {
     font-family: sans-serif;
     display: flex;
     justify-content: center;
+    background-color: #5d0d73;
 }
 
 .calculatorBox {
     border: 1px solid black;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     padding: 20px;
+    background-color: gray;
 }
 
 .calculatorDisplay {
-    border: 1px solid blue;
+    border: 2px solid #4a494a;
+    background-color: white;
     width: 400px;
     text-align: right;
     font-family: monospace;
     font-size: 30px;
+    margin-bottom: 15px;
 }
 
 .buttonsContainer {
     display: flex;
-    border: 1px solid red;
     justify-content: space-between;
     gap: 20px;
     flex: 1;
