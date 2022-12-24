@@ -17,7 +17,7 @@ body {
 .calculatorDisplay {
     border: 2px solid #4a494a;
     background-color: white;
-    width: 400px;
+    width: 350px;
     text-align: right;
     font-family: monospace;
     font-size: 30px;
