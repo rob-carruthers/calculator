@@ -20,6 +20,7 @@ function operate(operator, a, b) {
 }
 
 function pressOperatorKey(e) {
+    debugger;
     backspaceEnabled = false;
     // Check if this is the first operation or one of a chain
     if (currentOperator === "" ) {
@@ -31,7 +32,10 @@ function pressOperatorKey(e) {
     // make this the result the first operand of the next
     // operation.
     else {
-        const result = operate(currentOperator, firstOperand, outputDisplayValue);
+        let operator = ""
+        if ( currentOperator === "x" ) { operator = "*" }
+        else { operator = currentOperator };
+        const result = operate(operator, firstOperand, outputDisplayValue);
         firstOperand = result;
         outputDisplay.textContent = Math.round(result * Math.pow(10, precision)) / Math.pow(10, precision);
         // reset the display value for when a new number is typed.
@@ -45,15 +49,22 @@ function pressOperatorKey(e) {
 
 };
 
-// Initial setup
-let outputDisplayValue = 0;
-let firstOperand = 0;
-let currentOperator = "";
-let backspaceEnabled = false;
-const precision = 14;
-let outputDisplayDecimals = 0;
-const outputDisplay = document.querySelector("#outputDisplay");
-const operandsDisplay = document.querySelector("#operandsDisplay");
+function pressEqualsKey() {
+    if (!(currentOperator === "")) {
+        let operator = ""
+        if ( currentOperator === "x" ) { operator = "*" }
+        else { operator = currentOperator };
+        const result = operate(operator, firstOperand, outputDisplayValue);
+        operandsDisplay.textContent = firstOperand.toString() + " " + currentOperator + " " + outputDisplayValue.toString() + " = ";
+        outputDisplayValue = result;
+        outputDisplay.textContent = Math.round(result * Math.pow(10, precision)) / Math.pow(10, precision);
+        
+
+        currentOperator = "";
+        backspaceEnabled = false;
+    
+    }
+}
 
 function reset() {
     outputDisplayValue = 0;
@@ -64,6 +75,15 @@ function reset() {
     operandsDisplay.textContent = "";
 }
 
+// Initial setup
+let outputDisplayValue = 0;
+let firstOperand = 0;
+let currentOperator = "";
+let backspaceEnabled = false;
+const precision = 14;
+let outputDisplayDecimals = 0;
+const outputDisplay = document.querySelector("#outputDisplay");
+const operandsDisplay = document.querySelector("#operandsDisplay");
 reset()
 
 // Set up clear button to reset when clicked
@@ -110,20 +130,8 @@ for (const operator of ["Add", "Subtract", "Multiply", "Divide"] ) {
 };
 
 document.querySelector("#buttonEquals").addEventListener(
-    'click', () => {
-        if (!(currentOperator === "")) {
-            const result = operate(currentOperator, firstOperand, outputDisplayValue);
-            operandsDisplay.textContent = firstOperand.toString() + " " + currentOperator + " " + outputDisplayValue.toString() + " = ";
-            outputDisplayValue = result;
-            outputDisplay.textContent = Math.round(result * Math.pow(10, precision)) / Math.pow(10, precision);
-            
-
-            currentOperator = "";
-            backspaceEnabled = false;
-        
-        }
-    }
-)
+    'click', pressEqualsKey
+);
 
 document.querySelector("#buttonDecimal").addEventListener(
     'click', () => {
