@@ -18,7 +18,7 @@ body {
 .calculatorDisplay {
     border: 2px solid #4a494a;
     background-color: white;
-    width: 350px;
+    width: 290px;
     font-family: monospace;
     margin-bottom: 15px;
     display: flex;
@@ -40,7 +40,6 @@ body {
 .buttonsContainer {
     display: flex;
     justify-content: space-between;
-    gap: 20px;
     flex: 1;
 }
 
