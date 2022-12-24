@@ -135,10 +135,8 @@ document.querySelector("#buttonBackspace").addEventListener(
         // (A little dirty)
         if (!(calculatorDisplay === 0) && backspaceEnabled) {
             let numString = calculatorDisplay.textContent;
-            // Handle a trailing decimal point if entered
-            if (!(numString.slice(-1) == ".")) {
-                numString = numString.slice(0, -1);
-            };
+
+            numString = numString.slice(0, -1);
 
             if (calculatorDisplayDecimals > 0) {
                 calculatorDisplayDecimals -= 1;
