@@ -18,10 +18,22 @@ body {
     border: 2px solid #4a494a;
     background-color: white;
     width: 350px;
-    text-align: right;
     font-family: monospace;
-    font-size: 30px;
     margin-bottom: 15px;
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+}
+
+#operandsDisplay {
+    text-align: right;
+    font-size: 22px;
+    min-height: 32px;
+}
+
+#outputDisplay {
+    text-align: right;
+    font-size: 30px;
 }
 
 .buttonsContainer {
