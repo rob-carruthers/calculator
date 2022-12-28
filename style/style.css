@@ -76,6 +76,7 @@ button {
     flex-basis: 0;
     flex-grow: 1;
     transition-duration: 0.1s;
+    cursor: pointer;
 }
 
 #buttonClear {
